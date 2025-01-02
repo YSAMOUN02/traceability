@@ -203,7 +203,7 @@ async function traceability(page)
                         <td>${item.Description}</td>
                         <td>${item.UOM}</td>
                         <td>${item.type}</td>
-                        <td><button  onclick= "fetch_varaint(${index})"><i class="fa-solid fa-plus"></i></button></td>
+                        <td><button  onclick= "fetch_varaint(${index})"><i class="fa-solid fa-eye"></i></button></td>
                     </tr>
                     `;
                 });

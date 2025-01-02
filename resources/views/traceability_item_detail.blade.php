@@ -134,13 +134,16 @@
                                             </a>
                                         </li>
                                     @endif
-                                    <li id="list4" class="me-2">
-                                        <a href="#coverted_code" target="_self"
-                                            class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                            <i class="fa-solid fa-right-left"></i><span class="ml-2">Converted
-                                                Code</span>
-                                        </a>
-                                    </li>
+                                    @if ($count_convert_code != 0)
+                                        <li id="list4" class="me-2">
+                                            <a href="#coverted_code" target="_self"
+                                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                                <i class="fa-solid fa-right-left"></i><span class="ml-2">Converted
+                                                    Code</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
 
                                     @if ($count_qty_neg_adj != 0)
                                         <li id="list4" class="me-2">

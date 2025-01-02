@@ -1276,7 +1276,7 @@ class itemController extends Controller
                     $sql_covert_code->whereBetween('posting_date', [$formatted_begin_date, $formatted_end_date]);
 
                     $document_convert_code = $sql_covert_code->get();
-
+                    $count_convert_code = count($document_convert_code);
 
                    // Output
                    $sql_output = Item_ledger_entry_for_sum_stock::where('type', 6)
@@ -1396,7 +1396,8 @@ class itemController extends Controller
                         'data_post_adj' => $data_post_adj,
                         'data_reclass' => $data_reclass,
                         'qty_reclass' => $qty_reclass,
-                        'document_convert_code' => $document_convert_code
+                        'document_convert_code' => $document_convert_code,
+                        'count_convert_code' => $count_convert_code
                     ]);
 
 

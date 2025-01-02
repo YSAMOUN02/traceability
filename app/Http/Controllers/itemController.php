@@ -17,6 +17,9 @@ use App\Models\Item_lot;
 use App\Models\Item;
 use App\Models\Item_ledger_entry;
 use App\Models\Item_ledger_entry_for_sum_stock;
+use App\Models\Purchase;
+use App\Models\Sale;
+use App\Models\Consumtion;
 
 class itemController extends Controller
 {
@@ -864,8 +867,8 @@ class itemController extends Controller
             ->having(DB::raw('SUM(quantity)'), '>', 0);
         $end_stock = $sql_end->get();
 
-
-        $sql_purchase = Item_ledger_entry_for_sum_stock::where('type', 0)
+        // Purchase
+        $sql_purchase = Purchase::where('type', 0)
         ->where('item', $item);
         if ($variant != 'NA') {
             // Filter by variant when specified
@@ -878,23 +881,23 @@ class itemController extends Controller
         $qty_purchase = $sql_purchase->sum('quantity');
 
 
-
-        $sql_purchase = Item_ledger_entry_for_sum_stock::where('type', 0)
+        // Purchase Return
+        $sql_purchase_return = Purchase::where('type', 0)
         ->where('item', $item);
         if ($variant != 'NA') {
             // Filter by variant when specified
-            $sql_purchase->where('variant', $variant);
+            $sql_purchase_return->where('variant', $variant);
         } else {
         }
         // Grouping with OR condition
-        $sql_purchase->whereBetween('posting_date', [$formatted_begin_date, $formatted_end_date]);
-        $sql_purchase->where('quantity','<',0);
-        $qty_purchase_return = $sql_purchase->sum('quantity');
+        $sql_purchase_return->whereBetween('posting_date', [$formatted_begin_date, $formatted_end_date]);
+        $sql_purchase_return->where('quantity','<',0);
+        $qty_purchase_return = $sql_purchase_return->sum('quantity');
 
 
 
         // Sale Order
-        $sql_sale_order = Item_ledger_entry_for_sum_stock::where('type', 1)
+        $sql_sale_order = Sale::where('type', 1)
         ->where('item', $item);
         if ($variant != 'NA') {
             // Filter by variant when specified
@@ -908,7 +911,7 @@ class itemController extends Controller
 
 
            // Sale  Return Order
-           $sql_sale_return = Item_ledger_entry_for_sum_stock::where('type', 1)
+           $sql_sale_return = Sale::where('type', 1)
            ->where('item', $item);
            if ($variant != 'NA') {
                // Filter by variant when specified
@@ -922,7 +925,7 @@ class itemController extends Controller
 
 
             // Consumption
-           $sql_consumtion = Item_ledger_entry_for_sum_stock::where('type', 5)
+           $sql_consumtion = Consumtion::where('type', 5)
            ->where('item', $item)
            ->whereNotLike('document','%RPC%');
            if ($variant != 'NA') {
@@ -936,8 +939,8 @@ class itemController extends Controller
            $qty_consumption = $sql_consumtion->sum  ('quantity');
 
 
-                // Consumption
-                $sql_covert_code = Item_ledger_entry_for_sum_stock::where('type', 5)
+                // Convert Code
+                $sql_covert_code = Consumtion::where('type', 5)
                 ->where('item', $item)
                 ->where('document','LIKE','%RPC%');
                 if ($variant != 'NA') {
@@ -1129,7 +1132,7 @@ class itemController extends Controller
 
     public function traceability_raw(request $request){
         $item = $request->item??'NA';
-        $variant  = $request->variant??'';
+        $variant  = $request->variant??'NA';
         $from_date = $request->from_date??'NA';
         $to_date = $request->to_date ??'NA';
 
@@ -1139,6 +1142,7 @@ class itemController extends Controller
         $end_year = new DateTime($to_date);
         $formatted_begin_date = $begin_year->format('Y-m-d H:i:s.000');
         $formatted_end_date = $end_year->format('Y-m-d H:i:s.000');
+
 
         // Item Info Calculation
         $sql_info = Item_lot::where('item', $item);
@@ -1180,7 +1184,7 @@ class itemController extends Controller
             $count_purchase  =0;
 
 
-            $sql_purchase = Item_ledger_entry_for_sum_stock::where('type', 0)
+            $sql_purchase = Purchase::where('type', 0)
             ->where('item', $item);
             if ($variant != 'NA') {
                 // Filter by variant when specified
@@ -1190,12 +1194,14 @@ class itemController extends Controller
             // Grouping with OR condition
             $sql_purchase->whereBetween('posting_date', [$formatted_begin_date, $formatted_end_date]);
             $sql_purchase->where('quantity','>',0);
+            $qty_purchase = $sql_purchase->sum('quantity');
             $data_purchase = $sql_purchase->get();
+
             $count_purchase = count($data_purchase);
 
 
 
-            $sql_purchase_return = Item_ledger_entry_for_sum_stock::where('type', 0)
+            $sql_purchase_return = Purchase::where('type', 0)
             ->where('item', $item);
             if ($variant != 'NA') {
                 // Filter by variant when specified
@@ -1211,7 +1217,7 @@ class itemController extends Controller
 
 
             // Sale Order
-            $sql_sale_order = Item_ledger_entry_for_sum_stock::where('type', 1)
+            $sql_sale_order = Sale::where('type', 1)
             ->where('item', $item);
             if ($variant != 'NA') {
                 // Filter by variant when specified
@@ -1226,7 +1232,7 @@ class itemController extends Controller
 
 
                // Sale  Return Order
-               $sql_sale_return = Item_ledger_entry_for_sum_stock::where('type', 1)
+               $sql_sale_return = Sale::where('type', 1)
                ->where('item', $item);
                if ($variant != 'NA') {
                    // Filter by variant when specified
@@ -1240,7 +1246,7 @@ class itemController extends Controller
                $count_sale_return_order = count($sale_return_order_data);
 
                 // Consumption
-                $sql_consumtion = Item_ledger_entry_for_sum_stock::where('type', 5)
+                $sql_consumtion = Consumtion::where('type', 5)
                 ->where('item', $item)
                 ->whereNotLike('document','%RPC%');
                 if ($variant != 'NA') {
@@ -1253,11 +1259,13 @@ class itemController extends Controller
                     //    $sql_purchase->where('quantity','>',0);
                     $consumption_data = $sql_consumtion->get();
 
-               $count_consumption = count($consumption_data);
+                    $count_consumption = count($consumption_data);
 
                     // Consumption
-                    $sql_covert_code = Item_ledger_entry_for_sum_stock::where('type', 5)
+                    $sql_covert_code = Consumtion::where('type', 5)
+                    ->select('document')
                     ->where('item', $item)
+                    ->distinct()
                     ->where('document','LIKE','%RPC%');
                     if ($variant != 'NA') {
                         // Filter by variant when specified
@@ -1266,9 +1274,8 @@ class itemController extends Controller
                     }
                     // Grouping with OR condition
                     $sql_covert_code->whereBetween('posting_date', [$formatted_begin_date, $formatted_end_date]);
-                    //    $sql_purchase->where('quantity','>',0);
-                    $qty_convert_code = $sql_covert_code->sum('quantity');
 
+                    $document_convert_code = $sql_covert_code->get();
 
 
                    // Output
@@ -1388,7 +1395,8 @@ class itemController extends Controller
                         'count_qty_post_adj' =>  $count_qty_post_adj,
                         'data_post_adj' => $data_post_adj,
                         'data_reclass' => $data_reclass,
-                        'qty_reclass' => $qty_reclass
+                        'qty_reclass' => $qty_reclass,
+                        'document_convert_code' => $document_convert_code
                     ]);
 
 

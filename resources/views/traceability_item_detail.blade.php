@@ -78,7 +78,7 @@
                                         </a>
                                     </li>
 
-                                    @if ($count_purchase!= 0)
+                                    @if ($count_purchase != 0)
                                         <li id="list1" class="me-2">
                                             <a href="#purchase" target="_self"
                                                 class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
@@ -88,12 +88,13 @@
                                         </li>
                                     @endif
                                     @if ($qty_output != 0)
-                                    <li id="list4" class="me-2">
-                                        <a href="#output" target="_self"
-                                            class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                            <i class="fa-solid fa-cubes-stacked"></i><span class="ml-2">Output</span>
-                                        </a>
-                                    </li>
+                                        <li id="list4" class="me-2">
+                                            <a href="#output" target="_self"
+                                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                                <i class="fa-solid fa-cubes-stacked"></i><span
+                                                    class="ml-2">Output</span>
+                                            </a>
+                                        </li>
                                     @endif
                                     @if ($count_purchase_retun != 0)
                                         <li id="list2" class="me-2">
@@ -133,24 +134,32 @@
                                             </a>
                                         </li>
                                     @endif
+                                    <li id="list4" class="me-2">
+                                        <a href="#coverted_code" target="_self"
+                                            class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                            <i class="fa-solid fa-right-left"></i><span class="ml-2">Converted
+                                                Code</span>
+                                        </a>
+                                    </li>
+
                                     @if ($count_qty_neg_adj != 0)
                                         <li id="list4" class="me-2">
                                             <a href="#neg_adj" target="_self"
                                                 class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                                <i class="fa-solid fa-square-minus"></i><span
-                                                    class="ml-2">Negative Adjustment</span>
+                                                <i class="fa-solid fa-square-minus"></i><span class="ml-2">Negative
+                                                    Adjustment</span>
                                             </a>
                                         </li>
                                     @endif
 
-                                    @if($count_qty_post_adj != 0)
-                                    <li id="list4" class="me-2">
-                                        <a href="#positive_adj" target="_self"
-                                            class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                            <i class="fa-solid fa-square-plus"></i><span
-                                                class="ml-2">Positive Adjustment</span>
-                                        </a>
-                                    </li>
+                                    @if ($count_qty_post_adj != 0)
+                                        <li id="list4" class="me-2">
+                                            <a href="#positive_adj" target="_self"
+                                                class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                                <i class="fa-solid fa-square-plus"></i><span class="ml-2">Positive
+                                                    Adjustment</span>
+                                            </a>
+                                        </li>
                                     @endif
                                     @if ($qty_reclass != 0)
                                         <li id="list4" class="me-2">
@@ -166,8 +175,7 @@
                                     <li id="list4" class="me-2">
                                         <a href="#endstock" target="_self"
                                             class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                            <i class="fa-solid fa-box-open"></i><span
-                                                class="ml-2">End Stock</span>
+                                            <i class="fa-solid fa-box-open"></i><span class="ml-2">End Stock</span>
                                         </a>
                                     </li>
 
@@ -185,62 +193,63 @@
                 </h1>
 
             </div>
-    <div id="content2">
+            <div id="content2">
                 @if (!empty($begin_stock))
 
 
-                <div class="mt-5" id="beginstock">
-                    <span class="heading "><i class="fa-solid fa-dolly"></i>Begin Stock</span>
-                    <table class="custom_big_table mt-2">
-                        <tr>
-                            <th>Location</th>
-                            <th>Item</th>
-                            <th>Variant</th>
-                            <th>Quantity</th>
-                            <th>UOM</th>
-                            <th>Lot</th>
-                            <th class="whitespace-nowrap">Expire</th>
-                        </tr>
-
-
-
-                        @php
-                            $total_stock_begin = 0;
-                        @endphp
-                        @foreach ($begin_stock as $item)
+                    <div class="mt-5" id="beginstock">
+                        <span class="heading "><i class="fa-solid fa-dolly"></i>Begin Stock</span>
+                        <table class="custom_big_table mt-2">
                             <tr>
-                                <td>{{ $item->location }}</td>
-                                <td>{{  $item->item}}</td>
-                                <td>{{  $item->variant}}</td>
-                                <td>{{ (float) $item->total_quantity }}</td>
-                                <td>{{ $product_info->UOM }}</td>
-                                <td>{{ $item->lot }}</td>
-                                <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
+                                <th>Location</th>
+                                <th>Item</th>
+                                <th>Variant</th>
+                                <th>Quantity</th>
+                                <th>UOM</th>
+                                <th>Lot</th>
+                                <th class="whitespace-nowrap">Expire</th>
                             </tr>
+
+
+
                             @php
-                                $total_stock_begin += (float) $item->total_quantity;
+                                $total_stock_begin = 0;
                             @endphp
-                        @endforeach
-                        <tr class="total  whitespace-nowrap">
-                            <td class="total">Total Sum Quantity</td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total">{{ $total_stock_begin.' ' . $product_info->UOM }}</td>
-                        </tr>
+                            @foreach ($begin_stock as $item)
+                                <tr>
+                                    <td>{{ $item->location }}</td>
+                                    <td>{{ $item->item }}</td>
+                                    <td>{{ $item->variant }}</td>
+                                    <td>{{ (float) $item->total_quantity }}</td>
+                                    <td>{{ $product_info->UOM }}</td>
+                                    <td>{{ $item->lot }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
+                                </tr>
+                                @php
+                                    $total_stock_begin += (float) $item->total_quantity;
+                                @endphp
+                            @endforeach
+                            <tr class="total  whitespace-nowrap">
+                                <td class="total">Total Sum Quantity</td>
+                                <td class="total"></td>
+                                <td class="total"></td>
+                                <td class="total"></td>
+                                <td class="total"></td>
+                                <td class="total"></td>
+                                <td class="total">{{ $total_stock_begin . ' ' . $product_info->UOM }}</td>
+                            </tr>
 
 
 
-                    </table>
+                        </table>
                     </div>
                 @endif
 
                 @if (!empty($data_purchase))
                     @if ($count_purchase != 0)
                         <div id="purchase" class="mt-5">
-                            <span class="heading "><i class="mx-2 fa-solid fa-cart-shopping"></i> Purchase Order</span>
+                            <span class="heading "><i class="mx-2 fa-solid fa-cart-shopping"></i> Purchase
+                                Order</span>
                             <table class="custom_big_table mt-2">
                                 @php
                                     $purchase_qty = 0;
@@ -265,8 +274,8 @@
                                         <td>{{ $no }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
                                         <td>{{ $item->document }}</td>
-                                        <td>{{ $item->item}}</td>
-                                        <td>{{ $item->variant}}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
                                         <td>{{ (float) $item->quantity }}</td>
                                         <td>{{ $product_info->UOM }}</td>
                                         <td>{{ $item->lot }}</td>
@@ -332,8 +341,8 @@
                                         <td>{{ $no }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
                                         <td>{{ $item->document }}</td>
-                                        <td>{{$item->item}}</td>
-                                        <td>{{$item->variant}}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
                                         <td>{{ (float) $item->quantity }}</td>
                                         <td>{{ $product_info->UOM }}</td>
                                         <td>{{ $item->lot }}</td>
@@ -371,7 +380,7 @@
                                 Order or Undo</span>
                             <table class="custom_big_table mt-2">
                                 @php
-                                    $no = 1 ;
+                                    $no = 1;
                                     $sale_qty = 0;
                                 @endphp
                                 <tr>
@@ -423,195 +432,196 @@
 
                 @endif
 
-               @if (!empty($data_post_adj))
-                   @if ($count_qty_post_adj != 0)
-                   <div class="mt-5" id="positive_adj">
-                    <span class="heading "> <i class="mx-2 fa-solid fa-cart-flatbed"></i>Positive Adjustment</span>
-                    <table class="custom_big_table mt-2">
-                        @php
-                            $no = 1 ;
-                            $post_adj = 0;
-                        @endphp
-                        <tr>
-                            <th>No</th>
-                            <th>Posting Date</th>
-                            <th>Document</th>
-                            <th>Item</th>
-                            <th>Variant</th>
-                            <th>Quantity</th>
-                            <th>UOM</th>
-                            <th>Lot</th>
-                            <th>Location</th>
+                @if (!empty($data_post_adj))
+                    @if ($count_qty_post_adj != 0)
+                        <div class="mt-5" id="positive_adj">
+                            <span class="heading "> <i class="mx-2 fa-solid fa-cart-flatbed"></i>Positive
+                                Adjustment</span>
+                            <table class="custom_big_table mt-2">
+                                @php
+                                    $no = 1;
+                                    $post_adj = 0;
+                                @endphp
+                                <tr>
+                                    <th>No</th>
+                                    <th>Posting Date</th>
+                                    <th>Document</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Lot</th>
+                                    <th>Location</th>
 
 
-                        </tr>
-                        @foreach ($data_post_adj as $item)
-                            <tr>
-                                <td>{{ $no }}</td>
-                                <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
-                                <td>{{ $item->document }}</td>
-                                <td>{{$item->item}}</td>
-                                <td>{{$item->variant}}</td>
-                                <td>{{ (float) $item->quantity }}</td>
-                                <td>{{ $product_info->UOM }}</td>
-                                <td>{{ $item->lot }}</td>
-                                <td>{{ $item->location }}</td>
+                                </tr>
+                                @foreach ($data_post_adj as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
+                                        <td>{{ $item->document }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ $item->location }}</td>
 
-                            </tr>
-                            @php
-                                $no++;
-                                $post_adj += (float) $item->quantity;
-                            @endphp
-                        @endforeach
+                                    </tr>
+                                    @php
+                                        $no++;
+                                        $post_adj += (float) $item->quantity;
+                                    @endphp
+                                @endforeach
 
-                        <tr class="total  whitespace-nowrap">
-                            <td class="total">Total Sum Quantity</td>
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
 
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total">{{ $post_adj . ' ' . $product_info->UOM }}</td>
-                        </tr>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total">{{ $post_adj . ' ' . $product_info->UOM }}</td>
+                                </tr>
 
-                    </table>
-                </div>
+                            </table>
+                        </div>
 
-                   @endif
-               @endif
+                    @endif
+                @endif
 
-               {{-- $qty_reclass = count($data_reclass); --}}
-               @if (!empty($data_reclass))
-               @if ($qty_reclass != 0)
-               <div class="mt-5" id="reclass">
-                <span class="heading "> <i class="fa-solid fa-pen-to-square"></i>Reclass</span>
-                <table class="custom_big_table mt-2">
-                    @php
-                        $no = 1 ;
-                        $reclass_qty_sum = 0;
-                    @endphp
-                    <tr>
-                        <th>No</th>
-                        <th>Posting Date</th>
-                        <th>Document</th>
-                        <th>Item</th>
-                        <th>Variant</th>
-                        <th>Quantity</th>
-                        <th>UOM</th>
-                        <th>Lot</th>
-                        <th>Location</th>
-                        <th>Expire</th>
+                {{-- $qty_reclass = count($data_reclass); --}}
+                @if (!empty($data_reclass))
+                    @if ($qty_reclass != 0)
+                        <div class="mt-5" id="reclass">
+                            <span class="heading "> <i class="fa-solid fa-pen-to-square"></i>Reclass</span>
+                            <table class="custom_big_table mt-2">
+                                @php
+                                    $no = 1;
+                                    $reclass_qty_sum = 0;
+                                @endphp
+                                <tr>
+                                    <th>No</th>
+                                    <th>Posting Date</th>
+                                    <th>Document</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Lot</th>
+                                    <th>Location</th>
+                                    <th>Expire</th>
 
-                    </tr>
-                    @foreach ($data_reclass as $item)
-                        <tr>
-                            <td>{{ $no }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
-                            <td>{{ $item->document }}</td>
-                            <td>{{$item->item}}</td>
-                            <td>{{$item->variant}}</td>
-                            <td>{{ (float) $item->quantity }}</td>
-                            <td>{{ $product_info->UOM }}</td>
-                            <td>{{ $item->lot }}</td>
-                            <td>{{ $item->location }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
+                                </tr>
+                                @foreach ($data_reclass as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
+                                        <td>{{ $item->document }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ $item->location }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
 
-                        </tr>
-                        @php
-                            $no++;
-                            $reclass_qty_sum += (float) $item->quantity;
-                        @endphp
-                    @endforeach
+                                    </tr>
+                                    @php
+                                        $no++;
+                                        $reclass_qty_sum += (float) $item->quantity;
+                                    @endphp
+                                @endforeach
 
-                    <tr class="total  whitespace-nowrap">
-                        <td class="total">Total Sum Quantity</td>
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
 
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total"></td>
-                        <td class="total">{{ $reclass_qty_sum . ' ' . $product_info->UOM }}</td>
-                    </tr>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total">{{ $reclass_qty_sum . ' ' . $product_info->UOM }}</td>
+                                </tr>
 
-                </table>
-            </div>
+                            </table>
+                        </div>
 
-               @endif
-           @endif
-
-
-               @if (!empty($qty_neg_data))
-                   @if ($count_qty_neg_adj != 0)
-                   <div class="mt-5" id="neg_adj">
-                    <span class="heading "> <i class="fa-solid fa-square-minus"></i>Negative Adjustment</span>
-                    <table class="custom_big_table mt-2">
-                        @php
-                            $no = 1 ;
-                            $neg_adj = 0;
-                        @endphp
-                        <tr>
-                            <th>No</th>
-                            <th>Posting Date</th>
-                            <th>Document</th>
-                            <th>Item</th>
-                            <th>Variant</th>
-                            <th>Quantity</th>
-                            <th>UOM</th>
-                            <th>Lot</th>
-                            <th>Location</th>
+                    @endif
+                @endif
 
 
-                        </tr>
-                        @foreach ($qty_neg_data as $item)
-                            <tr>
-                                <td>{{ $no }}</td>
-                                <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
-                                <td>{{ $item->document }}</td>
-                                <td>{{$item->item}}</td>
-                                <td>{{$item->variant}}</td>
-                                <td>{{ (float) $item->quantity }}</td>
-                                <td>{{ $product_info->UOM }}</td>
-                                <td>{{ $item->lot }}</td>
-                                <td>{{ $item->location }}</td>
+                @if (!empty($qty_neg_data))
+                    @if ($count_qty_neg_adj != 0)
+                        <div class="mt-5" id="neg_adj">
+                            <span class="heading "> <i class="fa-solid fa-square-minus"></i>Negative Adjustment</span>
+                            <table class="custom_big_table mt-2">
+                                @php
+                                    $no = 1;
+                                    $neg_adj = 0;
+                                @endphp
+                                <tr>
+                                    <th>No</th>
+                                    <th>Posting Date</th>
+                                    <th>Document</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Lot</th>
+                                    <th>Location</th>
 
-                            </tr>
-                            @php
-                                $no++;
-                                $neg_adj += (float) $item->quantity;
-                            @endphp
-                        @endforeach
 
-                        <tr class="total  whitespace-nowrap">
-                            <td class="total">Total Sum Quantity</td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
-                            <td class="total"></td>
+                                </tr>
+                                @foreach ($qty_neg_data as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
+                                        <td>{{ $item->document }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ $item->location }}</td>
 
-                            <td class="total">{{ $neg_adj . ' ' . $product_info->UOM }}</td>
-                        </tr>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                        $neg_adj += (float) $item->quantity;
+                                    @endphp
+                                @endforeach
 
-                    </table>
-                </div>
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
 
-                   @endif
-               @endif
+                                    <td class="total">{{ $neg_adj . ' ' . $product_info->UOM }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    @endif
+                @endif
 
                 @if (!empty($data_purchase_return))
                     @if ($count_purchase_retun != 0)
                         <div class="mt-5" id="purchase_return">
-                            <span class="heading "> <i class="mx-2 fa-solid fa-cart-flatbed"></i>Purchase Return Or
-                                Purchase Undo</span>
+                            <span class="heading "> <i class="mx-2 fa-solid fa-cart-flatbed"></i>Purchase
+                                Return</span>
                             <table class="custom_big_table mt-2">
                                 @php
                                     $purchase_qty = 0;
@@ -638,8 +648,8 @@
                                         <td>{{ $no }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
                                         <td>{{ $item->document }}</td>
-                                        <td>{{$item->item}}</td>
-                                        <td>{{$item->variant}}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
                                         <td>{{ (float) $item->quantity }}</td>
                                         <td>{{ $product_info->UOM }}</td>
                                         <td>{{ $item->lot }}</td>
@@ -670,189 +680,241 @@
                             </table>
                         </div>
                     @endif
-                  @endif
-                    @if (!empty($sale_order_data))
-                        @if ($count_sale_order != 0)
-                            <div class="mt-5" id="sale_order">
-                                <span class="heading "><i class="mx-2 fa-solid fa-money-check-dollar"></i>Sale
-                                    Order</span>
-                                <table class="custom_big_table mt-2">
-                                    @php
-                                        $sale_qty = 0;
-                                        $no = 1;
-                                    @endphp
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Posting Date</th>
-                                        <th>Document</th>
-                                        <th>Item</th>
-                                        <th>Variant</th>
-                                        <th>Quantity</th>
-                                        <th>UOM</th>
-                                        <th>Lot</th>
-                                        <th>Location</th>
-                                        <th>Custmer</th>
-                                        <th>Custmer Name</th>
-
-                                    </tr>
-                                    @foreach ($sale_order_data as $item)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
-                                            <td>{{ $item->document }}</td>
-                                            <td>{{$item->item}}</td>
-                                            <td>{{$item->variant}}</td>
-                                            <td>{{ (float) $item->quantity }}</td>
-                                            <td>{{ $product_info->UOM }}</td>
-                                            <td>{{ $item->lot }}</td>
-                                            <td>{{ $item->location }}</td>
-                                            <td>{{ $item->source }}</td>
-                                            <td>{{ $item->customer_name }}</td>
-                                        </tr>
-                                        @php
-                                            $no++;
-                                            $sale_qty += (float) $item->quantity;
-                                        @endphp
-                                    @endforeach
-
-                                    <tr class="total  whitespace-nowrap">
-                                        <td class="total">Total Sum Quantity</td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total">{{ $sale_qty . ' ' . $product_info->UOM }}</td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        @endif
-
-
-                    @endif
-
-
-                                 {{-- 'count_consumption' =>$count_consumption,
-                                    'consumption_data' => $consumption_data --}}
-                    @if (!empty($consumption_data))
-                        @if ($count_consumption != 0)
-                            <div class="mt-5" id="consumption">
-                                <span class="heading "> <i
-                                        class="fa-solid fa-arrow-up-from-water-pump"></i>Consumption
-                                </span>
-                                <table class="custom_big_table mt-2">
-                                    @php
-                                        $consumption_qty = 0;
-                                        $no = 1;
-                                    @endphp
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Posting Date</th>
-                                        <th>Document</th>
-                                        <th>Item</th>
-                                        <th>Variant</th>
-                                        <th>Quantity</th>
-                                        <th>UOM</th>
-                                        <th>Lot</th>
-                                        <th>Location</th>
-
-                                        <th>Use For</th>
-
-                                    </tr>
-                                    @foreach ($consumption_data as $item)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
-                                            <td>{{ $item->document }}</td>
-                                            <td>{{ $item->item}}</td>
-                                            <td>{{$item->variant}}</td>
-                                            <td>{{ (float) $item->quantity }}</td>
-                                            <td>{{ $product_info->UOM }}</td>
-                                            <td>{{ $item->lot }}</td>
-                                            <td>{{ $item->location }}</td>
-                                            <td>{{ $item->source }}</td>
-
-                                        </tr>
-                                        @php
-                                            $no++;
-                                            $consumption_qty += (float) $item->quantity;
-                                        @endphp
-                                    @endforeach
-
-                                    <tr class="total  whitespace-nowrap">
-                                        <td class="total">Total Sum Quantity</td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total"></td>
-                                        <td class="total">{{ $consumption_qty . ' ' . $product_info->UOM }}</td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        @endif
-
-
-                    @endif
-                    @if (!empty($end_stock))
-                    @if($count_end_stock != 0)
-                    <div class="mt-5" id="endstock">
-                        <span class="heading "><i class="fa-solid fa-box-open"></i>End Stock</span>
-                        <table class="mt-2">
-
-                            @php
-                                $total_stock_end = 0;
-                            @endphp
-                            <tr>
-                                <th>Location</th>
-                                <th>Item</th>
-                                <th>Variant</th>
-                                <th>Quantity</th>
-                                <th>UOM</th>
-
-                                <th>Lot</th>
-                                <th class="whitespace-nowrap">Expire</th>
-                            </tr>
-                            @foreach ($end_stock as $item)
-                                <tr>
-                                    <td>{{ $item->location }}</td>
-                                    <td>{{$item->item}}</td>
-                                    <td>{{$item->variant}}</td>
-                                    <td>{{ (float) $item->total_quantity }}</td>
-                                    <td>{{ $product_info->UOM }}</td>
-                                    <td>{{ $item->lot }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
-                                </tr>
+                @endif
+                @if (!empty($sale_order_data))
+                    @if ($count_sale_order != 0)
+                        <div class="mt-5" id="sale_order">
+                            <span class="heading "><i class="mx-2 fa-solid fa-money-check-dollar"></i>Sale
+                                Order</span>
+                            <table class="custom_big_table mt-2">
                                 @php
-                                    $total_stock_end += (float) $item->total_quantity;
+                                    $sale_qty = 0;
+                                    $no = 1;
                                 @endphp
-                            @endforeach
-                            <tr class="total  whitespace-nowrap">
-                                <td class="total">Total Sum Quantity</td>
-                                <td class="total"></td>
-                                <td class="total"></td>
-                                <td class="total"></td>
-                                <td class="total"></td>
-                                <td class="total"></td>
-                                <td class="total">{{ $total_stock_end . $product_info->UOM }}</td>
-                            </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Posting Date</th>
+                                    <th>Document</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Lot</th>
+                                    <th>Location</th>
+                                    <th>Custmer</th>
+                                    <th>Custmer Name</th>
 
-                        </table>
-                    </div>
+                                </tr>
+                                @foreach ($sale_order_data as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
+                                        <td>{{ $item->document }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ $item->location }}</td>
+                                        <td>{{ $item->source }}</td>
+                                        <td>{{ $item->customer_name }}</td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                        $sale_qty += (float) $item->quantity;
+                                    @endphp
+                                @endforeach
+
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total">{{ $sale_qty . ' ' . $product_info->UOM }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
                     @endif
+
+
+                @endif
+
+
+                @if (!empty($consumption_data))
+                    @if ($count_consumption != 0)
+                        <div class="mt-5" id="consumption">
+                            <span class="heading "> <i class="fa-solid fa-arrow-up-from-water-pump"></i>Consumption
+                            </span>
+                            <table class="custom_big_table mt-2">
+                                @php
+                                    $consumption_qty = 0;
+                                    $no = 1;
+                                @endphp
+                                <tr>
+                                    <th>No</th>
+                                    <th>Posting Date</th>
+                                    <th>Document</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Lot</th>
+                                    <th>Location</th>
+                                    <th>Use For</th>
+                                    <th>Expire</th>
+                                    <th>Lot Manufacturer</th>
+
+                                </tr>
+                                @foreach ($consumption_data as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->posting_date)->format('M d Y') }}</td>
+                                        <td>{{ $item->document }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ $item->location }}</td>
+                                        <td>{{ $item->source }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
+                                        <td> {{ $item->mf_lot }}</td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                        $consumption_qty += (float) $item->quantity;
+                                    @endphp
+                                @endforeach
+
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total">{{ $consumption_qty . ' ' . $product_info->UOM }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
                     @endif
+
+
+                @endif
+
+                @if (!empty($consumption_data))
+                    @if ($count_consumption != 0)
+                        <div class="mt-5" id="coverted_code">
+                            <span class="heading "> <i class="fa-solid fa-right-left"></i>Converted Code
+                            </span>
+                            <table class="mt-2">
+                                <tr>
+                                    <th>Convert From Code</th>
+                                    <th>Quantity</th>
+                                    <th>Convert To Code</th>
+                                    <th>Quantity</th>
+                                    <th>Document</th>
+                                </tr>
+
+                                @foreach($document_convert_code as $item)
+                                            @php
+                                                $qty_convert_from = App\Models\Consumtion::where('item', $product_info->item)
+
+                                                ->where('document' ,$item->document)
+                                                ->sum('quantity');
+                                                $new_code = App\Models\Item_ledger_entry_for_sum_stock::where('document',$item->document)
+                                                ->select('item')
+                                                ->where('type',6)
+                                                ->first();
+                                                $qty_convert_to = App\Models\Item_ledger_entry_for_sum_stock::where('document',$item->document)
+                                                ->where('type',6)
+                                                ->sum('quantity');
+
+                                            @endphp
+
+                                    <tr>
+                                        <td>{{$product_info->item}}</td>
+
+                                        <td>{{ (float)$qty_convert_from }}</td>
+                                        <td>{{$new_code->item}}</td>
+                                        <td>{{ (float)$qty_convert_to}}</td>
+                                        <td>{{ $item->document }}</td>
+                                    </tr>
+
+
+
+
+                                @endforeach
+
+
+                            </table>
+                        </div>
+                    @endif
+                @endif
+
+                @if (!empty($end_stock))
+                    @if ($count_end_stock != 0)
+                        <div class="mt-5" id="endstock">
+                            <span class="heading "><i class="fa-solid fa-box-open"></i>End Stock</span>
+                            <table class="mt-2">
+
+                                @php
+                                    $total_stock_end = 0;
+                                @endphp
+                                <tr>
+                                    <th>Location</th>
+                                    <th>Item</th>
+                                    <th>Variant</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+
+                                    <th>Lot</th>
+                                    <th class="whitespace-nowrap">Expire</th>
+                                </tr>
+                                @foreach ($end_stock as $item)
+                                    <tr>
+                                        <td>{{ $item->location }}</td>
+                                        <td>{{ $item->item }}</td>
+                                        <td>{{ $item->variant }}</td>
+                                        <td>{{ (float) $item->total_quantity }}</td>
+                                        <td>{{ $product_info->UOM }}</td>
+                                        <td>{{ $item->lot }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->expire)->format('M d Y') }}</td>
+                                    </tr>
+                                    @php
+                                        $total_stock_end += (float) $item->total_quantity;
+                                    @endphp
+                                @endforeach
+                                <tr class="total  whitespace-nowrap">
+                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total"></td>
+                                    <td class="total">{{ $total_stock_end . $product_info->UOM }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    @endif
+                @endif
             </div>
         </div>
-        </div>
+    </div>
     </div>
     </div>
 

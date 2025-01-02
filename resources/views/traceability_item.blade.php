@@ -89,7 +89,7 @@
                         <input type="text" name="variant" {{$variant}} class="form-control" id="item" placeholder="selected item">
                         <input class="form-control text-black" name="from_date" value="{{$from_date}}" id="from_date" type="date">
                         <input class="form-control text-black" name="to_date" value="{{$to_date}}" id="to_date" type="date">
-        
+
                         <button id="detail_data" type="submit">submti</button>
                     </form>
                 </div>

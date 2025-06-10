@@ -20,7 +20,7 @@
 
 
       <center><div class="title">Traceability Item by Period</div></center>
-      <div class="search-bar flex flex-col justify-center ">
+      <div class="search-bar flex justify-between">
 
           <div>
             <label for="">Search </label>
@@ -38,12 +38,14 @@
 
                         <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
                     </button>
-                    <span class="text-white mx-5 text-3xl" id="total_record_show">
+                    <span class="text-white mx-5 text-small" id="total_record_show">
                         Total Item Found : {{$items->total_record}}
                     </span>
             </div>
-          </div>
 
+
+          </div>
+          <span>Last Date Modify : {{ \Carbon\Carbon::parse($last_date_modify->posting_date)->format('M d Y') }}</span>
 
 
       </div>

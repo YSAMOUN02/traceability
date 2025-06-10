@@ -802,11 +802,13 @@ class itemController extends Controller
         $items->total_record = $total_record;
         $items->data = $data;
 
+        $last_date_modify = Item_ledger_entry_for_sum_stock::orderBy('posting_date', 'desc')->first();
         // return var_dump($items);
         return view("no_nav_for_item",[
             'items' => $items,
             'page' => $page,
             'total_pages' => $total_pages,
+            'last_date_modify' => $last_date_modify
         ]);
     }
 
@@ -1047,7 +1049,7 @@ class itemController extends Controller
 
 
     public function traceability_item_with_variant_search(request $request){
-
+            $last_date_modify = Item_ledger_entry_for_sum_stock::orderBy('posting_date', 'desc')->first();
    // Initialize
             $search = $request->search ?? 'NA';
             $page =  1;
@@ -1125,7 +1127,8 @@ class itemController extends Controller
             'items' => $datas,
             'page' => $page,
             'total_pages' => $total_pages,
-            'search' => $search
+            'search' => $search,
+            'last_date_modify' => $last_date_modify
         ]);
 
     }

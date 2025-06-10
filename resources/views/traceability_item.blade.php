@@ -148,7 +148,7 @@
                                 @endphp
                             @endforeach
                             <tr class="total">
-                                <td class="total" >Total Sum Quantity</td>
+                                <td class="total" >Total Quantity</td>
                                 <td class="total">{{$total_stock_begin}}</td>
                                 <td class="total">{{$product_info->UOM}}</td>
                             </tr>
@@ -251,7 +251,7 @@
                             @endif
 
                             <tr class="total">
-                                <td class="total" >Total Sum Quantity</td>
+                                <td class="total" >Total Quantity</td>
 
                                 <td class="total">{{$qty_total_all_process}}</td>
                                 <td  class="total">{{$product_info->UOM}}</td>
@@ -287,7 +287,7 @@
                                 @endphp
                             @endforeach
                             <tr class="total">
-                                <td class="total" >Total Sum Quantity</td>
+                                <td class="total" >Total Quantity</td>
                                 <td class="total">{{$total_stock_end}}</td>
                                 <td class="total">{{$product_info->UOM}}</td>
                             </tr>

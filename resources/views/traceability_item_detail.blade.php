@@ -233,7 +233,7 @@
                                 @endphp
                             @endforeach
                             <tr class="total  whitespace-nowrap">
-                                <td class="total">Total Sum Quantity</td>
+                                <td class="total">Total</td>
                                 <td class="total"></td>
                                 <td class="total"></td>
                                 <td class="total"></td>
@@ -296,7 +296,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -359,7 +359,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -417,7 +417,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -478,7 +478,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
 
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -540,7 +540,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
 
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -602,7 +602,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -667,7 +667,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -729,7 +729,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -797,7 +797,7 @@
                                 @endforeach
 
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
@@ -837,6 +837,7 @@
                                                 $qty_convert_from = App\Models\Consumtion::where('item', $product_info->item)
 
                                                 ->where('document' ,$item->document)
+
                                                 ->sum('quantity');
                                                 $new_code = App\Models\Item_ledger_entry_for_sum_stock::where('document',$item->document)
                                                 ->select('item')
@@ -902,7 +903,7 @@
                                     @endphp
                                 @endforeach
                                 <tr class="total  whitespace-nowrap">
-                                    <td class="total">Total Sum Quantity</td>
+                                    <td class="total">Total</td>
                                     <td class="total"></td>
                                     <td class="total"></td>
                                     <td class="total"></td>
